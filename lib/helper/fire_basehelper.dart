@@ -10,6 +10,7 @@ class FirebaseHelper {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<String> guestSignIn() async {
+
     try {
       await auth.signInAnonymously();
       return "SignIn Successfully";
@@ -78,19 +79,19 @@ class FirebaseHelper {
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Stream<QuerySnapshot<Map<String, dynamic>>> selectData() {
-  //   return firestore.collection("products").snapshots();
-  // }
-  //
-  // void updateData(ProductModel model) {
-  //   firestore.collection("products").doc("${model.id}").set(
-  //     {
-  //       "name": model.name,
-  //       "price": model.price,
-  //       "category": model.cate,
-  //       "description": model.desc,
-  //       "image": model.img,
-  //     },
-  //   );
-  // }
+// Stream<QuerySnapshot<Map<String, dynamic>>> selectData() {
+//   return firestore.collection("products").snapshots();
+// }
+//
+// void updateData(ProductModel model) {
+//   firestore.collection("products").doc("${model.id}").set(
+//     {
+//       "name": model.name,
+//       "price": model.price,
+//       "category": model.cate,
+//       "description": model.desc,
+//       "image": model.img,
+//     },
+//   );
+// }
 }

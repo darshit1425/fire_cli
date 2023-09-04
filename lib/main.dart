@@ -5,7 +5,6 @@ import 'package:firecliconn/screen/singup/view/singup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:sizer/sizer.dart';
-
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -13,6 +12,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
 
   runApp(
     Sizer(
@@ -29,5 +29,3 @@ Future<void> main() async {
     ),
   );
 }
-
-
