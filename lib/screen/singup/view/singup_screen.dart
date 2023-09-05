@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:firecliconn/helper/fire_basehelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -14,6 +16,15 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController txtemail = TextEditingController();
   TextEditingController txtpassword = TextEditingController();
+
+  TextEditingController txtcountry = TextEditingController();
+  TextEditingController txtcity = TextEditingController();
+  TextEditingController txtstate = TextEditingController();
+
+  // String countryValue = "";
+  // String stateValue = "";
+  // String cityValue = "";
+  // String address = "";
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +59,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 2,
-                            offset: Offset(0, 2))
+                          color: Colors.black26,
+                          blurRadius: 2,
+                          offset: Offset(0, 2),
+                        ),
                       ]),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -68,14 +80,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 2,
-                            offset: Offset(0, 2))
-                      ]),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 2,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
@@ -94,14 +108,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 2,
-                            offset: Offset(0, 2))
-                      ]),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 2,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
@@ -115,10 +131,92 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
+
                 //signup
+
                 SizedBox(
                   height: 5.h,
                 ),
+
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 2,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: TextFormField(
+                      controller: txtcountry,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        label: Text("Country"),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 2,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: TextFormField(
+                      controller: txtcity,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        label: Text("City"),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 2,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: TextFormField(
+                      controller: txtstate,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        label: Text("State"),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+
                 InkWell(
                   onTap: () async {
                     String msj = await FirebaseHelper.firebaseHelper
@@ -133,6 +231,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           colorText: Colors.black,
                           backgroundColor: Colors.blue.shade50);
                     }
+
+                    CollectionReference collRef =
+                        FirebaseFirestore.instance.collection('client');
+                    collRef.add({
+                      'city': txtcity.text,
+                      'country': txtcountry.text,
+                      'state': txtstate.text,
+                    });
                   },
                   child: Container(
                     height: 6.h,

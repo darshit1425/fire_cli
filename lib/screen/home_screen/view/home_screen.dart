@@ -41,13 +41,7 @@ class _HomescreenState extends State<Homescreen> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.camera,
-                          size: 25,
-                        ),
-                      ),
+
                       SizedBox(
                         width: 2.w,
                       ),
@@ -88,14 +82,14 @@ class _HomescreenState extends State<Homescreen> {
                               radius: 35,
                               child: Icon(Icons.admin_panel_settings_outlined)),
                           const Text(
-                            "Ecommerce Admin App !",
+                            "Conform SignOut !!",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
                           const Text(
-                            "Are you sure to signout\n the admine app",
+                            "Are you sure to signout\n the app",
                             style:
                                 TextStyle(fontSize: 15, color: Colors.black38),
                             textAlign: TextAlign.center,
